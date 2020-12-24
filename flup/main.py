@@ -26,7 +26,6 @@ def detect(upload_image):
     result_list = []
     result_img = ''
 
-
     """
     # 設定からモデルファイルのパスを取得
     model_file_path = settings.MODEL_FILE_PATH
