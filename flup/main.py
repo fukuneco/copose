@@ -6,6 +6,7 @@ import numpy as np
 from PIL import Image
 from keras.backend import tensorflow_backend as backend
 from django.conf import settings
+import copy
 from Mod.mytmpMod import *
 ####################################################################################
 # visualize
@@ -19,6 +20,9 @@ RANK_SAVE_DIR = "./002_ranking/"                       # ランキング結果�
 pick_file= "001_best_human_joints.pickle"
 
 RANK_NUM = 3 #上位何枚まで表示するか
+
+MODEL = []
+
 
 # @upload_image: アップロードされたイメージパス？
 def detect(upload_image):
@@ -39,11 +43,21 @@ def detect(upload_image):
     # https://stackoverflow.com/questions/51911088/how-to-get-s3-directory-as-os-path-in-python-with-boto3/51911893
     ############# heroku + AWS S3の場合
     #こっちは読み込めた
+    global MODEL
+    #if MODEL ==[]: #初回のみ読み込ませたい
     import boto3
+    print("model downloading ...")
     s3 = boto3.resource('s3')
     s3.meta.client.download_file('mymodeltest', 'model.h5', '/tmp/model.h5')
-    model = create_model()
-    model.load_weights('/tmp/model.h5')
+    print("model leading ...")
+    MODEL = create_model()
+    MODEL.load_weights('/tmp/model.h5')
+    model = copy.deepcopy(MODEL)
+    model.summary()
+    #else:
+    #    print("model already loaded")
+    #    model = copy.deepcopy(MODEL)
+    #    model.summary()
     #############
 
 
