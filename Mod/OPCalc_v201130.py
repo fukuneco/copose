@@ -1,6 +1,6 @@
 # 出力を得るためのその他解析
 import cv2
-import matplotlib
+#import matplotlib
 import pylab as plt
 import util
 import numpy as np
