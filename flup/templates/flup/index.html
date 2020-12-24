@@ -1,0 +1,46 @@
+{% extends 'flup/base.html' %}
+{% block content %}
+<div style="padding:1em;">
+    <div class="page-header">
+        <h1>kerasで深層学習　<small>v1.0.0</small></h1>
+    </div>
+    <form method="POST" action="{% url 'index' %}" enctype="multipart/form-data" class="form-horizontal">
+        {% csrf_token %}
+        <div class='form-group'>
+            <div class='col-sm-4'>{{form.as_p}}</div>
+            <div class='col-sm-8'><button type="submit" class="btn btn-primary">類似画像を探す</button></div>
+        </div>
+    </form>
+    <p class="message">判定画像</p>
+    <ul>
+        {% if result_name != "" %}
+            <li>{{ result_name }}</li>
+        {% else %}
+            <li>画像なし</li>
+        {% endif %}
+    </ul>
+    <p class="message">判定結果</p>
+    <ol>
+        {% if result_list %}
+            {% for result in result_list %}
+                <li>{{ result }}</li>
+            {% endfor %}
+        {% else %}
+            <li>ファイル名なし</li>
+        {% endif %}
+    </ol>
+    <div class="image">
+
+    <ol>
+        {% if result_img_list %}
+            {% for result_img in result_img_list %}
+                <li><img src="data:image/png;base64,{{result_img}} " width = "300" /> </li>
+            {% endfor %}
+        {% else %}
+            <li>結果なし</li>
+        {% endif %}
+    </ol>
+
+    </div>
+</div>
+{% endblock %}
