@@ -30,7 +30,8 @@ def detect(upload_image):
     result_list = []
     result_img = ''
 
-    """
+  
+    # 1 start
     # 設定からモデルファイルのパスを取得
     model_file_path = settings.MODEL_FILE_PATH
    
@@ -38,8 +39,11 @@ def detect(upload_image):
     model = create_model()
     model.load_weights(model_file_path)
     #model = keras.models.load_model(model_file_path) # 20.12.22kerasモデルはないので省く
-
+    # 1 end
+    
     """
+
+    # 2 start ---
     # https://stackoverflow.com/questions/51911088/how-to-get-s3-directory-as-os-path-in-python-with-boto3/51911893
     ############# heroku + AWS S3の場合
     #こっちは読み込めた
@@ -59,8 +63,8 @@ def detect(upload_image):
     #    model = copy.deepcopy(MODEL)
     #    model.summary()
     #############
-
-
+    # 2 end---
+    """
     # アップロードされた画像ファイルをメモリ上でOpenCVのimageに格納
     #image = np.asarray(Image.open(upload_image))
     #loaded_img = cv2.imread(upload_image) #oriImg
