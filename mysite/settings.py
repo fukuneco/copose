@@ -30,7 +30,7 @@ SECRET_KEY = '04hrbf7nx)s(xp29%k9lu5692$z3_k^uieqyy7*8kqowc-ebk1'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1', 'fkn-xmas.herokuapp.com']
+ALLOWED_HOSTS = ['127.0.0.1', 'fkn-xmas.herokuapp.com', '176.34.22.229', ' ec2-176-34-22-229.ap-northeast-1.compute.amazonaws.com']
 
 
 # Application definition
